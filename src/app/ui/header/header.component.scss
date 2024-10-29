@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 60px;
+  padding: 0 20px;
+  background-color: var(--cardColor);
+  box-shadow: 0 0 2px black;
+  h1 {
+    font-family: Comfortaa;
+    font-size: 24px;
+    font-weight: 600;
+  }
+}

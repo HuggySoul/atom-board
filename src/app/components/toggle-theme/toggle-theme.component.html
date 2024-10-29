@@ -1,0 +1,8 @@
+<button (click)="toggle()" class="toggle-btn-container">
+  <div class="toggle-btn" [ngClass]="isLightTheme ? 'light' : 'dark'">
+    <img
+      src="assets/icons/{{ isLightTheme ? 'moon' : 'sun' }}.svg"
+      alt="Theme icon"
+    />
+  </div>
+</button>

@@ -36,6 +36,7 @@ $toggle-dark: #794ee6;
 
 body {
   background-color: var(--bgColor);
+  overflow-x: hidden;
 }
 
 body.dark {

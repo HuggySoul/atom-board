@@ -1,0 +1,13 @@
+<div class="line-chart-card">
+  <app-time-period-btns class="period-btns"></app-time-period-btns>
+  <canvas
+    baseChart
+    width="450"
+    height="450"
+    [type]="'line'"
+    [data]="lineChartData"
+    [options]="lineChartOptions"
+    [legend]="lineChartLegend"
+  >
+  </canvas>
+</div>

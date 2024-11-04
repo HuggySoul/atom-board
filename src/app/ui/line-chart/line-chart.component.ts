@@ -1,18 +1,25 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { GetChartDataService } from '../../api/get-chart-data.service';
 import { Labels } from '../../shared/labels.model';
 import { TimePeriod } from '../../services/chart-time-period/time-period.model';
 import { TimePeriodService } from '../../services/chart-time-period/time-period.service';
 import { takeUntil, Subject } from 'rxjs';
 import { ChartData } from '../../api/chart-data';
 import { TimePeriodBtnsComponent } from '../time-period-btns/time-period-btns.component';
+import { EditChartMenuComponent } from '../edit-chart-menu/edit-chart-menu.component';
+import { AppStateService } from '../../services/app-state/app-state.service';
 
 @Component({
   selector: 'app-line-chart',
   standalone: true,
-  imports: [BaseChartDirective, TimePeriodBtnsComponent],
+  imports: [
+    BaseChartDirective,
+    TimePeriodBtnsComponent,
+    EditChartMenuComponent,
+    NgIf,
+  ],
   templateUrl: './line-chart.component.html',
   styleUrl: './line-chart.component.scss',
   providers: [TimePeriodService],
@@ -20,7 +27,8 @@ import { TimePeriodBtnsComponent } from '../time-period-btns/time-period-btns.co
 export class LineChartComponent implements OnInit, OnDestroy {
   public TimePeriod = TimePeriod;
   private destroy$ = new Subject<void>(); // для отписки от подписок
-  private chartData!: ChartData;
+  public chartData!: ChartData;
+  public currentTimePeriod!: TimePeriod;
 
   //конфигурация графика
   public lineChartData!: ChartConfiguration<'line'>['data'];
@@ -30,18 +38,18 @@ export class LineChartComponent implements OnInit, OnDestroy {
   };
 
   constructor(
-    private getChartDataService: GetChartDataService,
+    private appStateService: AppStateService,
     private timePeriodService: TimePeriodService
-  ) {
-    this.chartData = this.getChartDataService.getLineChartData();
-  }
+  ) {}
 
-  private configureChart(period: TimePeriod) {
+  private configureChart(period: TimePeriod, chartData: ChartData | null) {
+    if (!chartData) return;
+
     this.lineChartData = {
       labels: Labels[period],
       datasets: [
         {
-          data: this.chartData.data[period],
+          data: chartData.data[period],
           label: '2024',
           fill: true,
           tension: 0.5,
@@ -54,12 +62,20 @@ export class LineChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.configureChart(this.timePeriodService.period);
+    this.appStateService.lineChartData$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: ChartData | null) => {
+        if (data) {
+          this.chartData = data;
+          this.configureChart(this.timePeriodService.period, this.chartData);
+        }
+      });
 
     this.timePeriodService.timePeriod$
       .pipe(takeUntil(this.destroy$))
       .subscribe((period: TimePeriod) => {
-        this.configureChart(period);
+        this.currentTimePeriod = period;
+        this.configureChart(period, this.chartData);
       });
   }
 

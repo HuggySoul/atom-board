@@ -1,0 +1,21 @@
+<div class="dropdown-menu">
+  <button (click)="toggleMenu()">
+    <img src="assets/icons/edit.svg" alt="Edit chart" />
+  </button>
+
+  <div *ngIf="isOpen" class="dropdown-content">
+    <p>Editing chart</p>
+    <ul>
+      <li *ngFor="let label of labels[currentPeriod]; let i = index">
+        <label>
+          {{ label }}
+        </label>
+        <app-chart-data-input
+          [currentValue]="chartData.data[currentPeriod][i]"
+          [currentPeriod]="currentPeriod"
+          [index]="i"
+        />
+      </li>
+    </ul>
+  </div>
+</div>

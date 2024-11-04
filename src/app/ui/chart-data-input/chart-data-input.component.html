@@ -1,0 +1,9 @@
+<input
+  class="chart-data-input"
+  [formControl]="newDataValue"
+  (blur)="updateStorage()"
+  (keydown.enter)="onkeydown($event)"
+  (keydown.escape)="onkeydown($event)"
+  min="0"
+  type="number"
+/>

@@ -1,8 +1,12 @@
 @import "fonts";
 
+:root {
+  --drop-menu-z-index: 1;
+}
+
 //цвета для светлой и темной тем
-$bg_light: #edede9;
-$bg_dark: #20153c;
+$bg_light: white;
+$bg_dark: #090d26;
 
 $text_light: black;
 $text_dark: white;
@@ -10,8 +14,11 @@ $text_dark: white;
 $border_light: black;
 $border_dark: white;
 
-$card_light: #d4a373;
-$card_dark: #794ee6;
+$header_light: #d4a373;
+$header_dark: #794ee6;
+
+$card_light: #f9f9f9;
+$card_dark: #181c39;
 
 $toggle-light: #f5ebe0;
 $toggle-dark: #794ee6;
@@ -21,8 +28,9 @@ $toggle-dark: #794ee6;
   --bgColor: #{$bg_light};
   --textColor: #{$text_light};
   --borderColor: #{$border_light};
-  --cardColor: #{$card_light};
+  --headerColor: #{$header_light};
   --toggleColor: #{$toggle-light};
+  --cardColor: #{$card_light};
 }
 
 // добавляем эти переменные при тёмной теме
@@ -30,8 +38,9 @@ $toggle-dark: #794ee6;
   --bgColor: #{$bg_dark};
   --textColor: #{$text_dark};
   --borderColor: #{$border_dark};
-  --cardColor: #{$card_dark};
+  --headerColor: #{$header_dark};
   --toggleColor: #{$toggle-dark};
+  --cardColor: #{$card_dark};
 }
 
 body {
@@ -166,7 +175,6 @@ input:-ms-input-placeholder {
 }
 input:focus,
 input:active,
-button:focus,
 button:active {
   outline: none;
 }
@@ -174,10 +182,6 @@ button:active {
 button::-moz-focus-inner {
   padding: 0;
   border: 0;
-}
-
-label {
-  cursor: pointer;
 }
 
 legend {

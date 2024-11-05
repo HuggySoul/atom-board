@@ -4,6 +4,7 @@ import { HeaderComponent } from './ui/header/header.component';
 import { LineChartComponent } from './ui/line-chart/line-chart.component';
 import { BarChartComponent } from './ui/bar-chart/bar-chart.component';
 import { ChartConfiguration } from 'chart.js';
+import { PieChartComponent } from './ui/pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { ChartConfiguration } from 'chart.js';
     HeaderComponent,
     LineChartComponent,
     BarChartComponent,
+    PieChartComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

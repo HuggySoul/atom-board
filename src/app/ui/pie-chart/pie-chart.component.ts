@@ -12,28 +12,28 @@ import { EditChartMenuComponent } from '../edit-chart-menu/edit-chart-menu.compo
 import { AppStateService } from '../../services/app-state/app-state.service';
 
 @Component({
-  selector: 'app-bar-chart',
+  selector: 'app-pie-chart',
   standalone: true,
   imports: [
+    EditChartMenuComponent,
+    TimePeriodBtnsComponent,
     NgIf,
     BaseChartDirective,
-    TimePeriodBtnsComponent,
-    EditChartMenuComponent,
   ],
-  templateUrl: './bar-chart.component.html',
-  styleUrl: './bar-chart.component.scss',
+  templateUrl: './pie-chart.component.html',
+  styleUrl: './pie-chart.component.scss',
   providers: [TimePeriodService],
 })
-export class BarChartComponent implements OnInit, OnDestroy {
+export class PieChartComponent implements OnInit, OnDestroy {
   public TimePeriod = TimePeriod;
   private destroy$ = new Subject<void>(); // для отписки от подписок
   public chartData!: ChartData;
   public currentTimePeriod!: TimePeriod;
 
   //конфигурация графика
-  public lineChartData!: ChartConfiguration<'bar'>['data'];
+  public lineChartData!: ChartConfiguration<'pie'>['data'];
   public lineChartLegend = true;
-  public lineChartOptions: ChartOptions<'bar'> = {
+  public lineChartOptions: ChartOptions<'pie'> = {
     responsive: false,
   };
 

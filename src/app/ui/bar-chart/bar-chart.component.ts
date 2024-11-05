@@ -60,7 +60,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.appStateService.lineChartData$
+    this.appStateService.barChartData$
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: ChartData | null) => {
         if (data) {

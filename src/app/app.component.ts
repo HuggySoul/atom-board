@@ -2,12 +2,18 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './ui/header/header.component';
 import { LineChartComponent } from './ui/line-chart/line-chart.component';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { BarChartComponent } from './ui/bar-chart/bar-chart.component';
+import { ChartConfiguration } from 'chart.js';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, LineChartComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    LineChartComponent,
+    BarChartComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

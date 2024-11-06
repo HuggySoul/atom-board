@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './ui/header/header.component';
-import { ChartComponent } from './ui/chart/chart.component';
-import { ChartType } from './ui/chart/chart.model';
+import { HeaderComponent } from './components/header/header.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartType } from './components/chart/chart.model';
 
 @Component({
   selector: 'app-root',

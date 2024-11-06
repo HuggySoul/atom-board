@@ -10,7 +10,7 @@ import { TimePeriodBtnsComponent } from '../time-period-btns/time-period-btns.co
 import { EditChartMenuComponent } from '../edit-chart-menu/edit-chart-menu.component';
 import { AppStateService } from '../../services/app-state/app-state.service';
 import { ChartType } from './chart.model';
-import { ToggleThemeService } from '../toggle-theme/toggle-theme.service';
+import { ToggleThemeService } from '../../services/theme-toggle/toggle-theme.service';
 import { ChartConfigService } from '../../services/chart-config/chart-config.service';
 
 @Component({

@@ -12,8 +12,8 @@ import { ChartData } from '../../api/chart-data';
 import { Labels } from '../../shared/labels.model';
 import { ChartDataInputComponent } from '../chart-data-input/chart-data-input.component';
 import { ChartType } from '../chart/chart.model';
-import { ToggleThemeService } from '../toggle-theme/toggle-theme.service';
-import { Theme } from '../toggle-theme/toggle-theme.model';
+import { ToggleThemeService } from '../../services/theme-toggle/toggle-theme.service';
+import { Theme } from '../../services/theme-toggle/toggle-theme.model';
 @Component({
   selector: 'app-edit-chart-menu',
   standalone: true,

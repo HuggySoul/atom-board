@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ToggleThemeService } from '../../ui/toggle-theme/toggle-theme.service';
-import { Theme } from '../../ui/toggle-theme/toggle-theme.model';
+import { ToggleThemeService } from '../theme-toggle/toggle-theme.service';
+import { Theme } from '../theme-toggle/toggle-theme.model';
 import { ChartConfiguration } from 'chart.js';
 import { Labels } from '../../shared/labels.model';
 import { TimePeriod } from '../../services/chart-time-period/time-period.model';
 import { ChartData } from '../../api/chart-data';
 import { ChartColors } from '../../shared/chart-colors';
-import { ChartType } from '../../ui/chart/chart.model';
-import { color } from 'chart.js/helpers';
+import { ChartType } from '../../components/chart/chart.model';
 
 @Injectable({
   providedIn: 'root',

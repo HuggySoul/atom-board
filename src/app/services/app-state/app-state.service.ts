@@ -3,7 +3,7 @@ import { ChartData } from '../../api/chart-data';
 import { GetChartDataService } from '../../api/get-chart-data.service';
 import { TimePeriod } from '../chart-time-period/time-period.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ChartType } from '../../ui/chart/chart.model';
+import { ChartType } from '../../components/chart/chart.model';
 
 @Injectable({
   providedIn: 'root',

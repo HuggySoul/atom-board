@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ToggleThemeService } from './toggle-theme.service';
+import { ToggleThemeService } from '../../services/theme-toggle/toggle-theme.service';
 import { AsyncPipe, NgClass } from '@angular/common';
-import { Theme } from './toggle-theme.model';
+import { Theme } from '../../services/theme-toggle/toggle-theme.model';
 
 @Component({
   selector: 'app-toggle-theme',

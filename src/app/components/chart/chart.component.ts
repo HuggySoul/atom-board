@@ -49,6 +49,8 @@ export class ChartComponent implements OnInit, OnDestroy {
   ) {}
 
   private updateChartConfig() {
+    if (!this.chartData) return;
+
     this.chartConfig = this.chartConfigService.getChartConfig(
       this.currentTimePeriod,
       this.chartData,

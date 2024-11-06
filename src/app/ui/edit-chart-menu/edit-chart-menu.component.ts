@@ -20,6 +20,14 @@ import { ChartType } from '../chart/chart.model';
   templateUrl: './edit-chart-menu.component.html',
   styleUrl: './edit-chart-menu.component.scss',
 })
+
+/**
+ * Компонент отображения всплывающего меню для редактирования графика
+ *
+ * @param currentPeriod - текущий временной период
+ * @param chartData - набор данных в графике
+ * @param type - типа графика
+ */
 export class EditChartMenuComponent implements OnDestroy {
   isOpen = false;
   labels = Labels;
@@ -31,6 +39,7 @@ export class EditChartMenuComponent implements OnDestroy {
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
+  //Логика открытия и закрытия меню
   toggleMenu() {
     this.isOpen = !this.isOpen;
 
@@ -41,6 +50,7 @@ export class EditChartMenuComponent implements OnDestroy {
     }
   }
 
+  //Логика закрытия окна по нажатии Escape
   private addEscapeListener() {
     this.escapeListener = this.renderer.listen(
       this.elementRef.nativeElement,
@@ -60,6 +70,7 @@ export class EditChartMenuComponent implements OnDestroy {
     }
   }
 
+  //логика закрытия меню при клике вне
   @HostListener('document:click', ['$event.target'])
   onClickOutside(targetElement: HTMLElement) {
     if (this.isOpen && !this.elementRef.nativeElement.contains(targetElement)) {
@@ -67,6 +78,7 @@ export class EditChartMenuComponent implements OnDestroy {
     }
   }
 
+  //удаление прослушивателя событий при уничтожении компонента
   ngOnDestroy(): void {
     this.removeEscapeListener();
   }

@@ -8,4 +8,7 @@ import { ToggleThemeComponent } from '../toggle-theme/toggle-theme.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
+/**
+ * Компонент для отображения хедера приложения
+ */
 export class HeaderComponent {}

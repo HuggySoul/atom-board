@@ -26,13 +26,17 @@ import { ChartColors } from '../../shared/chart-colors';
   styleUrl: './chart.component.scss',
   providers: [TimePeriodService],
 })
+
+/**
+ * Универсальный компонент для отрисовки графиков разных типов
+ * @param type - тип графика
+ */
 export class ChartComponent implements OnInit, OnDestroy {
   @Input() type!: ChartType;
 
-  public TimePeriod = TimePeriod;
   private destroy$ = new Subject<void>(); // для отписки от подписок
   public chartData!: ChartData;
-  public currentTimePeriod!: TimePeriod;
+  public currentTimePeriod!: TimePeriod; // для передачи дочерним компонентам
 
   public lineChartLegend = true;
   public chartConfig!: ChartConfiguration<ChartType>;
@@ -42,7 +46,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     private timePeriodService: TimePeriodService
   ) {}
 
-  // формирование датасетов разных типов графиков
+  // формирование датасетов для графиков разных типов
   private getChartDataSet(
     period: TimePeriod,
     chartData: ChartData,
@@ -105,6 +109,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // инициализация графика и создание подписки на изменение данных
     this.appStateService
       .getChartData(this.type)
       .pipe(takeUntil(this.destroy$))
@@ -115,6 +120,7 @@ export class ChartComponent implements OnInit, OnDestroy {
         }
       });
 
+    // инициализация и подписка на изменение временного периода
     this.timePeriodService.timePeriod$
       .pipe(takeUntil(this.destroy$))
       .subscribe((period: TimePeriod) => {
@@ -123,6 +129,7 @@ export class ChartComponent implements OnInit, OnDestroy {
       });
   }
 
+  //отписка от всех подписок перед уничтожением компонента
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

@@ -8,6 +8,14 @@ import { ChartType } from '../../ui/chart/chart.model';
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * Сервис хранения глобального состояния всех графиков
+ *
+ * @ВНИМАНИЕ Сервис является глобальным:
+ * не подразумевает использование нескольких графиков одинакового типа в одном приложении,
+ * так как состояние графиков одинаковых типов будет идентичным (providedIn: 'root').
+ */
 export class AppStateService {
   private lineChartData = new BehaviorSubject<ChartData | null>(null);
   private lineChartData$: Observable<ChartData | null> =
@@ -27,6 +35,7 @@ export class AppStateService {
     this.LoadChartData(ChartType.PIE);
   }
 
+  // Загрузка данных с сервера
   private LoadChartData(type: ChartType) {
     switch (type) {
       case ChartType.LINE:
@@ -47,10 +56,11 @@ export class AppStateService {
     }
   }
 
+  // Изменение данных в графике соответствующего типа
   public setChartData(
-    value: number,
+    value: number, // новое значение
     period: TimePeriod,
-    index: number,
+    index: number, // индекс изменяемого элемента
     type: ChartType
   ) {
     switch (type) {
@@ -81,6 +91,7 @@ export class AppStateService {
     }
   }
 
+  // Получение данных для графика соответствующего типа
   public getChartData(type: ChartType) {
     switch (type) {
       case ChartType.LINE:
@@ -92,6 +103,7 @@ export class AppStateService {
     }
   }
 
+  // Сброс данных для графика соответствующего типа
   public ResetChartData(type: ChartType) {
     switch (type) {
       case ChartType.LINE:

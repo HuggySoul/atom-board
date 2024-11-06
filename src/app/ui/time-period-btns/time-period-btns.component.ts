@@ -8,6 +8,11 @@ import { TimePeriodService } from '../../services/chart-time-period/time-period.
   templateUrl: './time-period-btns.component.html',
   styleUrl: './time-period-btns.component.scss',
 })
+
+/**
+ * Компонент отображения кнопок выбора временного периода на графике
+ *
+ */
 export class TimePeriodBtnsComponent {
   public TimePeriod = TimePeriod;
 

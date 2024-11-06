@@ -10,6 +10,9 @@ import { Theme } from './toggle-theme.model';
   templateUrl: './toggle-theme.component.html',
   styleUrl: './toggle-theme.component.scss',
 })
+/**
+ * Компонент для отображения переключателя темы
+ */
 export class ToggleThemeComponent {
   constructor(private themeToggleService: ToggleThemeService) {}
 

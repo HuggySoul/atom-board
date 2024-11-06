@@ -4,6 +4,10 @@ import { BehaviorSubject } from 'rxjs';
 import { Theme } from './toggle-theme.model';
 
 @Injectable({ providedIn: 'root' })
+
+/**
+ * Сервис с логикой для переключения темы в приложении
+ */
 export class ToggleThemeService {
   private themeSubject = new BehaviorSubject<Theme>(Theme.LIGHT);
 
@@ -24,7 +28,7 @@ export class ToggleThemeService {
     this.document.body.classList.add(theme);
 
     this.themeSubject.next(theme);
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('theme', theme); // Сохраняем тему в localStorage
   }
 
   private initTheme() {

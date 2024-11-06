@@ -25,7 +25,7 @@ export class GetChartDataService {
 
   // Данные для кругового графика
   getPieChartData() {
-    return {
+    const chartData = {
       data: {
         hours: [
           99, 67, 133, 35, 130, 85, 145, 35, 95, 95, 11, 109, 13, 67, 12, 146,
@@ -35,6 +35,7 @@ export class GetChartDataService {
         months: [65, 59, 80, 81, 56, 55, 40, 44, 76, 23, 32, 13],
       },
     };
+    return of(chartData).pipe(delay(1000));
   }
 
   // Данные для столбчатого графика

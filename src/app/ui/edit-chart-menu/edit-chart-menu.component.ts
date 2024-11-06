@@ -11,6 +11,7 @@ import { TimePeriod } from '../../services/chart-time-period/time-period.model';
 import { ChartData } from '../../api/chart-data';
 import { Labels } from '../../shared/labels.model';
 import { ChartDataInputComponent } from '../chart-data-input/chart-data-input.component';
+import { ChartType } from '../chart/chart.model';
 
 @Component({
   selector: 'app-edit-chart-menu',
@@ -24,6 +25,7 @@ export class EditChartMenuComponent implements OnDestroy {
   labels = Labels;
   @Input() currentPeriod!: TimePeriod;
   @Input() chartData!: ChartData;
+  @Input() type!: ChartType;
 
   private escapeListener!: () => void;
 

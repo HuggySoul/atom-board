@@ -4,6 +4,7 @@
     <app-edit-chart-menu
       [chartData]="chartData"
       [currentPeriod]="currentTimePeriod"
+      [type]="type"
     ></app-edit-chart-menu>
   </div>
   <canvas
@@ -11,9 +12,9 @@
     baseChart
     width="450"
     height="450"
-    [type]="'bar'"
-    [data]="lineChartData"
-    [options]="lineChartOptions"
+    [type]="chartConfig.type"
+    [data]="chartConfig.data"
+    [options]="chartConfig.options"
     [legend]="lineChartLegend"
   >
   </canvas>

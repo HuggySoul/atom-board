@@ -1,9 +1,9 @@
 <app-header></app-header>
 <main>
   <div class="charts-block">
-    <app-line-chart />
-    <app-bar-chart />
-    <app-pie-chart />
+    <app-chart [type]="ChartType.LINE" />
+    <app-chart [type]="ChartType.BAR" />
+    <app-chart [type]="ChartType.PIE" />
   </div>
 </main>
 

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AppStateService } from '../../services/app-state/app-state.service';
 import { TimePeriod } from '../../services/chart-time-period/time-period.model';
+import { ChartType } from '../chart/chart.model';
 @Component({
   selector: 'app-chart-data-input',
   standalone: true,
@@ -13,6 +14,7 @@ export class ChartDataInputComponent implements OnInit {
   @Input() currentValue!: number;
   @Input() currentPeriod!: TimePeriod;
   @Input() index!: number;
+  @Input() type!: ChartType;
 
   public newDataValue!: FormControl;
 
@@ -21,10 +23,11 @@ export class ChartDataInputComponent implements OnInit {
   updateStorage() {
     if (this.newDataValue.value === this.currentValue) return;
 
-    this.appStateService.setLineChartData(
+    this.appStateService.setChartData(
       this.newDataValue.value,
       this.currentPeriod,
-      this.index
+      this.index,
+      this.type
     );
   }
 

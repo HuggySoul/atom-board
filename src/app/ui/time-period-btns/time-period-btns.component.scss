@@ -9,15 +9,20 @@
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 2px var(--borderColor);
     padding: 7px;
     font-family: "Comfortaa";
     font-style: normal;
     font-weight: 400;
     font-size: 11px;
-  }
+    color: var(--textColor);
 
-  button:hover {
-    scale: 1.01;
+    &.selected {
+      border: 2px solid var(--borderColor);
+    }
+
+    &:hover {
+      scale: 1.01;
+    }
   }
 }

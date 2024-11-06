@@ -1,5 +1,20 @@
 <div class="period-btns">
-  <button (click)="changePeriod(TimePeriod.HOUR)">Hours</button>
-  <button (click)="changePeriod(TimePeriod.DAY)">Days</button>
-  <button (click)="changePeriod(TimePeriod.MONTH)">Months</button>
+  <button
+    [ngClass]="{ selected: isCurrentPeriod(TimePeriod.HOUR) }"
+    (click)="changePeriod(TimePeriod.HOUR)"
+  >
+    Hours
+  </button>
+  <button
+    [ngClass]="{ selected: isCurrentPeriod(TimePeriod.DAY) }"
+    (click)="changePeriod(TimePeriod.DAY)"
+  >
+    Days
+  </button>
+  <button
+    [ngClass]="{ selected: isCurrentPeriod(TimePeriod.MONTH) }"
+    (click)="changePeriod(TimePeriod.MONTH)"
+  >
+    Months
+  </button>
 </div>

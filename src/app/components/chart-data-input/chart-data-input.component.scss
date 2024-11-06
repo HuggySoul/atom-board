@@ -10,3 +10,9 @@
   padding: 5px;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .chart-data-input {
+    font-size: 12px;
+  }
+}

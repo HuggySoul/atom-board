@@ -71,7 +71,8 @@ export class ChartConfigService {
       case ChartType.BAR:
       case ChartType.LINE:
         return {
-          responsive: false,
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             x: { ticks: { color: labelColor }, grid: { color: gridColor } },
             y: { ticks: { color: labelColor }, grid: { color: gridColor } },
@@ -82,7 +83,8 @@ export class ChartConfigService {
         };
       case ChartType.PIE:
         return {
-          responsive: false,
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: { labels: { color: labelColor } },
           },

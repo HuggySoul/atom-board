@@ -7,18 +7,17 @@
       [type]="type"
     ></app-edit-chart-menu>
   </div>
-  <canvas
-    *ngIf="chartData; else loading"
-    baseChart
-    width="450"
-    height="450"
-    [type]="chartConfig.type"
-    [data]="chartConfig.data"
-    [options]="chartConfig.options"
-    [legend]="lineChartLegend"
-  >
-  </canvas>
-
+  <div class="chart-container">
+    <canvas
+      *ngIf="chartData; else loading"
+      baseChart
+      [type]="chartConfig.type"
+      [data]="chartConfig.data"
+      [options]="chartConfig.options"
+      [legend]="lineChartLegend"
+    >
+    </canvas>
+  </div>
   <ng-template #loading>
     <img
       class="loading"

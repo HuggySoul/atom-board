@@ -66,6 +66,16 @@
     background-color: var(--bgColor);
     color: var(--textColor);
   }
+
+  @media (max-width: 768px) {
+    label {
+      font-size: 11px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
 }
 
 @keyframes fadeInFromTopRight {

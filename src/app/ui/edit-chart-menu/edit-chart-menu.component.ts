@@ -12,7 +12,8 @@ import { ChartData } from '../../api/chart-data';
 import { Labels } from '../../shared/labels.model';
 import { ChartDataInputComponent } from '../chart-data-input/chart-data-input.component';
 import { ChartType } from '../chart/chart.model';
-
+import { ToggleThemeService } from '../toggle-theme/toggle-theme.service';
+import { Theme } from '../toggle-theme/toggle-theme.model';
 @Component({
   selector: 'app-edit-chart-menu',
   standalone: true,
@@ -31,13 +32,18 @@ import { ChartType } from '../chart/chart.model';
 export class EditChartMenuComponent implements OnDestroy {
   isOpen = false;
   labels = Labels;
+  theme = Theme;
   @Input() currentPeriod!: TimePeriod;
   @Input() chartData!: ChartData;
   @Input() type!: ChartType;
 
   private escapeListener!: () => void;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    public themeToggleService: ToggleThemeService,
+    private elementRef: ElementRef,
+    private renderer: Renderer2
+  ) {}
 
   //Логика открытия и закрытия меню
   toggleMenu() {

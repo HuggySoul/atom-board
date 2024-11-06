@@ -17,7 +17,7 @@
   background-color: var(--cardColor);
   min-width: 190px;
   height: 300px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px var(--borderColor);
   z-index: var(--drop-menu-z-index);
   border-radius: 16px;
   right: 5px;
@@ -50,6 +50,7 @@
     font-weight: 600;
     font-size: 15px;
     padding-left: 5px;
+    color: var(--textColor);
   }
 
   label {

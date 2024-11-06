@@ -1,6 +1,13 @@
 <div class="dropdown-menu">
   <button (click)="toggleMenu()">
-    <img src="assets/icons/edit.svg" alt="Edit chart" />
+    <img
+      src="assets/icons/{{
+        themeToggleService.theme === theme.LIGHT
+          ? 'edit-light.svg'
+          : 'edit-dark.svg'
+      }}"
+      alt="Edit chart"
+    />
   </button>
 
   <div *ngIf="isOpen" class="dropdown-content">

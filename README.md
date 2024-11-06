@@ -1,26 +1,21 @@
 # AtomBoard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+This is a simple application that displays charts.
+
+## Step-by-step installation:
+
+1. Check for node.js on your PC by using `node -v` command. If you have't installed it before, then install it from the [official website](https://nodejs.org/en/download/package-manager).
+2. Check your Angular version by using `ng version` - it should be `18.2.10`. If it isn't run the `npm install -g  @angular/cli@18.2.10`.
+3. Run the `npm install` command in the cloned project folder to install node modules.
+4. Execute one of the available scripts, which are described below.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Further help
 

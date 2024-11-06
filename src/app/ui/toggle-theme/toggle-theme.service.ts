@@ -10,6 +10,7 @@ import { Theme } from './toggle-theme.model';
  */
 export class ToggleThemeService {
   private themeSubject = new BehaviorSubject<Theme>(Theme.LIGHT);
+  public theme$ = this.themeSubject.asObservable();
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     this.initTheme();

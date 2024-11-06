@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
-import { Labels } from '../../shared/labels.model';
 import { TimePeriod } from '../../services/chart-time-period/time-period.model';
 import { TimePeriodService } from '../../services/chart-time-period/time-period.service';
 import { takeUntil, Subject } from 'rxjs';
@@ -11,7 +10,8 @@ import { TimePeriodBtnsComponent } from '../time-period-btns/time-period-btns.co
 import { EditChartMenuComponent } from '../edit-chart-menu/edit-chart-menu.component';
 import { AppStateService } from '../../services/app-state/app-state.service';
 import { ChartType } from './chart.model';
-import { ChartColors } from '../../shared/chart-colors';
+import { ToggleThemeService } from '../toggle-theme/toggle-theme.service';
+import { ChartConfigService } from '../../services/chart-config/chart-config.service';
 
 @Component({
   selector: 'app-chart',
@@ -43,69 +43,17 @@ export class ChartComponent implements OnInit, OnDestroy {
 
   constructor(
     private appStateService: AppStateService,
-    private timePeriodService: TimePeriodService
+    private timePeriodService: TimePeriodService,
+    private themeToggleService: ToggleThemeService,
+    private chartConfigService: ChartConfigService
   ) {}
 
-  // формирование датасетов для графиков разных типов
-  private getChartDataSet(
-    period: TimePeriod,
-    chartData: ChartData,
-    type: ChartType
-  ) {
-    switch (type) {
-      case ChartType.LINE:
-        return [
-          {
-            data: chartData.data[period],
-            label: '2024',
-            fill: true,
-            tension: 0.5,
-            borderColor: 'black',
-            borderWidth: 1.5,
-            backgroundColor: 'rgba(255,0,0,0.3)',
-          },
-        ];
-      case ChartType.BAR:
-        return [
-          {
-            data: chartData.data[period],
-            label: '2024',
-            borderColor: 'black',
-            borderWidth: 1.5,
-            backgroundColor: ChartColors,
-          },
-        ];
-      case ChartType.PIE:
-        return [
-          {
-            data: chartData.data[period],
-            label: '2024',
-            borderColor: 'black',
-            borderWidth: 1.5,
-            backgroundColor: ChartColors,
-          },
-        ];
-    }
-  }
-
-  // формирование конфигурации графика
-  private configureChart(
-    period: TimePeriod,
-    chartData: ChartData | null,
-    type: ChartType
-  ) {
-    if (!chartData) return;
-
-    this.chartConfig = {
-      type: type,
-      data: {
-        labels: Labels[period],
-        datasets: this.getChartDataSet(period, chartData, type),
-      },
-      options: {
-        responsive: false,
-      },
-    };
+  private updateChartConfig() {
+    this.chartConfig = this.chartConfigService.getChartConfig(
+      this.currentTimePeriod,
+      this.chartData,
+      this.type
+    );
   }
 
   ngOnInit() {
@@ -116,7 +64,7 @@ export class ChartComponent implements OnInit, OnDestroy {
       .subscribe((data: ChartData | null) => {
         if (data) {
           this.chartData = data;
-          this.configureChart(this.timePeriodService.period, data, this.type);
+          this.updateChartConfig();
         }
       });
 
@@ -125,7 +73,14 @@ export class ChartComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((period: TimePeriod) => {
         this.currentTimePeriod = period;
-        this.configureChart(period, this.chartData, this.type);
+        this.updateChartConfig();
+      });
+
+    // инициализация и подписка на изменение темы
+    this.themeToggleService.theme$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.updateChartConfig();
       });
   }
 
